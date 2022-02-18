@@ -34,6 +34,8 @@ public:
     void set_power(const bool power, const BulbEffect bulbEffect, const int duration);
     void set_bright(const char brightness, const BulbEffect bulbEffect, const int duration);
 
+    QString getPeerHostPort();
+
 signals:
     void disconnected();
     void stateChanged(QAbstractSocket::SocketState);

@@ -61,6 +61,11 @@ void Bulb::set_bright(const char brightness, const BulbEffect bulbEffect, const 
                                                        ));
 }
 
+QString Bulb::getPeerHostPort()
+{
+    return socket->peerAddress().toString() + ":" + socket->peerPort();
+}
+
 void Bulb::sendToBulb(const QJsonObject& objCommand, QSharedPointer<QJsonObject> objRes)
 {
     qDebug() << "print_function:" << __FUNCTION__ << __LINE__ << " text: " << __LINE__ << Qt::endl;
@@ -88,9 +93,11 @@ void Bulb::readFromBulb()
         // no action
     }
     else if(message == "client quota exceeded"){
+        qWarning() << "print_function:" << __FUNCTION__ << __LINE__ << " text: " << __LINE__ << Qt::endl;
         emit bulbErrorOccurred(ClientQuotaExceeded);
     }
     else {
+        qWarning() << "print_function:" << __FUNCTION__ << __LINE__ << " text: " << __LINE__ << Qt::endl;
         emit bulbErrorOccurred(ResponsesDoNotMatch);
     }
     objResponse.clear();
