@@ -5,3 +5,6 @@ HEADERS += \
 
 SOURCES += \
     $$PWD/Bulb.cpp
+
+
+INCLUDEPATH += $$PWD
